@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.kor{
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 12pt;
+}
+.jumbotron{
+	background-color: steelblue;
+	color: white;
+	padding: 100px 25px;
+}
+.container-fluid{
+	padding: 60px 50px;
+	border-bottom: 1px solid #aed0ed;
+}
+.bg-grey{
+	background-color: #aed0ed;
+}
+.logo-small{
+	color: steelblue;
+	font-size: 50px;
+}
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: steelblue;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: steelblue;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: white !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: steelblue !important;
+    background-color: white !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: white !important;
+}
+.rainbow {
+background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+transition: 2s;
+	
+}
+.rainbow p{
+	background-color: white;
+}
+.rainbow:hover{
+	background: linear-gradient(to left, red, orangered, yellow, green, blue, indigo, violet);
+}

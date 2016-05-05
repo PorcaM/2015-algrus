@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<Title>Drag N Drop Music Player</Title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../mainStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.musicBox 	{ background-color: white; border: 1px sold steelblue; display: inline-block;}
+		#list 		{ width: 620px; height: 62px; }
+		#playing	{ width: 62px; height: 62px; }
+	</style>
+	<script type="text/javascript">
+		// 드래그 관련 함수들
+		// 온드래그오버 함수
+		function allowDrop(ev){
+			ev.preventDefault();
+		}
+		// 온드롭
+		function drop(ev){
+			var target = $(ev.target);
+			if(target.is("img"))
+				target = target.parent(); 					// 타겟이 이미지면 이미지가 속한 div(부모)로 타겟 변경
+			var data = ev.dataTransfer.getData("Text");
+			if(target.children()) 							// 타겟에 자식이 있다면
+				$("#list").append(target.children()); 		// 그 자식을 모두 리스트 div에 붙임
+			target.append(document.getElementById(data)); 	// 이미지를 타겟에 넣어줌
+			ev.preventDefault();
+		}
+		// 온드래그
+		function drag(ev){
+			ev.dataTransfer.setData("Text", ev.target.id);
+		}
+		// 음악을 재생하는 함수
+		function play(ev){
+			var num = ev.dataTransfer.getData("Text");
+			$("#src").attr("src", "../resources/"+num+".mp3"); 	// 오디오 소스 연결
+			var audio = document.getElementById("audio");
+			audio.load(); 									// 로드(새로고침 같은 것인듯)
+			audio.play(); 									// 오디오 재생
+		}
+		// 음악을 정지하는 함수
+		function pause(){
+			$("#src").attr("src", ""); 						// 오디오 소스 초기화
+			var audio = document.getElementById("audio");
+			audio.load();
+			audio.pause();
+		}
+	</script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html">Algrus</a>
+			</div>
+		</div>
+	</nav>
+	<header class="jumbotron text-center">
+		<h2>음악을 들어요</h2>
+	</header>
+	<section class="container-fluid text-center bg-grey">
+		<article class="row">
+			<div class="col-sm-12 text-center">
+				<div class="musicBox" ondrop="drop(event); play(event);" ondragover="allowDrop(event)" id="playing">
+				
+				</div>
+			</div>
+			<br>
+			<div class="col-sm-12 text-center">
+				<div class="musicBox" ondrop="drop(event); pause();" ondragover="allowDrop(event)" id="list">
+					<img src="../resources/1.png" alt="button"  id="1" ondragstart="drag(event)">
+					<img src="../resources/2.png" alt="button"  id="2" ondragstart="drag(event)">
+					<img src="../resources/3.png" alt="button"  id="3" ondragstart="drag(event)">
+					<img src="../resources/4.png" alt="button"  id="4" ondragstart="drag(event)">
+					<img src="../resources/5.png" alt="button"  id="5" ondragstart="drag(event)">
+					<img src="../resources/6.png" alt="button"  id="6" ondragstart="drag(event)">
+					<img src="../resources/7.png" alt="button"  id="7" ondragstart="drag(event)">
+					<img src="../resources/8.png" alt="button"  id="8" ondragstart="drag(event)">
+					<img src="../resources/9.png" alt="button"  id="9" ondragstart="drag(event)">
+					<img src="../resources/10.png" alt="button"  id="10" ondragstart="drag(event)">
+				</div>
+			</div>
+			<br>
+			<div class="col-sm-12">
+				<audio controls id="audio">
+					<source id="src" src="" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio>
+			</div>
+		</article>
+	</section>
+</body>
+</html>

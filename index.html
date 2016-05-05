@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./mainStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script>
+		// 아래 구글맵스 소스는 http://www.w3schools.com/googleapi/google_maps_basic.asp 을 응용하였음. 
+		var lat = 37.450774, lng = 126.653647;
+		var myCenter = new google.maps.LatLng(lat, lng);
+
+		function initialize() {
+		var mapProp = {
+		center:myCenter,
+		zoom:12,
+		scrollwheel:false,
+		draggable:false,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+		var marker = new google.maps.Marker({
+		position:myCenter,
+		});
+
+		marker.setMap(map);
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+	<title>Algrus</title>
+</head>
+<body id="index" data-spy="scroll" data-target=".navbar" data-offset="60">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Algrus</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#about">ABOUT</a></li>
+					<li><a href="#services">SERVICES</a></li>
+					<li><a href="#maps">MAPS</a></li>
+                    <li>
+                        <!--아래 드랍다운 소스는 http://www.w3schools.com/bootstrap/bootstrap_dropdowns.asp을 응용하였습니다-->
+                        <div class="dropdown" >
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                MORE PAGES <span class="carrot"></span>
+                            </button>
+                            <ul class="dropdown-menu" style="background-color:#aed0ed;">
+                                <li><a href="./member/memberLogin.jsp">LOGIN</a></li>
+								<li><a href="./extra/beFat.html">BEFAT</a></li>
+                                <li><a href="./board/boardList.jsp">BOARD</a></li>
+                                <li><a href="./extra/video.html">VIDEO</a></li>
+                                <li><a href="./extra/musicPlayer.html">MUSIC</a></li>                            	
+                                <li><a href="./extra/clock.html">CLOCK</a></li>                   	
+                            </ul>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<header class="jumbotron text-center">
+		<h1>Algrus</h1>
+		<p><em>Pump your algorithm!</em></p>
+		<p>Algorithm is realy important for programmer. If you could not do it well, must be a firewood.</p>
+	</header>
+	<section class="container-fluid" id="about">
+		<article class="row slideanim">
+			<div class="col-sm-8">
+				<h3>뭐 하는 사이트입니까?</h3>
+				<p class="kor">
+					Algrus는 Algorithm과 IGRUS의 합성어로, IGRUS 회원이 주최하는 알고리즘 스터디 사이트입니다.
+					알고리즘이라고 알고 있었는데 구글에 영어로 검색해보니 알고리듬이라고 나오네요. 
+					영어는 발음의 차이니까 신경 쓰지 맙시다. 
+					뭔가 내용을 길게 써놓아야 있어 보이는데 쓸 말이 없네요. 아무 소리나 쓰는 거니까 신경 쓰지 마십시오. 
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<img class="img-responsive" src="./resources/algorithm.png" alt="algorithm">
+			</div>
+		</article>
+	</section>
+	<section class="container-fluid bg-grey">
+		<article class="row slideanim">
+			<div class="col-sm-4">
+				<img class="img-responsive" src="./resources/igrus.png" alt="igrus">
+			</div>
+			<div class="col-sm-8">
+				<h3>아이그루스란?</h3>
+				<p class="kor">
+					아이그루스는 인하대학교 소속 소프트웨어 동아리로, 쉽게 말해 공돌이 동아리 입니다.
+					대부분이 컴공이고 인하대학생입니다. 가끔 타과생이나 다른 학교 학생이 가입하기도 합니다. 
+					인하대학교에서 리그 오브 레전드를 제일 잘 합니다. 상위 30퍼센트 이상인 골드 티어가 바닥 취급 당합니다. 
+					이제 여기도 더 쓸 말이 없군요. 동방에서 잘 수 있다는 점이 개꿀입니다. 
+				</p>
+			</div>
+		</article>
+	</section>
+	<section class="container-fluid">
+		<article class="row slideanim">
+			<div class="col-sm-8">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe class="embed-responsive-item"
+					src="https://www.youtube.com/embed/hXp3kfEtnfU" 
+					frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<h3>Promotion video</h3>
+				<p class="kor">
+					동아리 홍보 영상<br>
+					12학번 엄진섭 학우님 제작
+				</p>
+			</div>
+		</article>
+	</section>
+	<section class="container-fluid text-center" id="services">
+		<h2>사이트 주요 기능들</h2>
+		<h3>What we offer in this site</h3>
+		<br>
+		<article class="row slideanim">
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-sort-by-attributes logo-small"></span>
+				<h4>Rank</h4>
+				<p class="kor">친구들과 점수를 비교하며 열등감을 느껴보아욧!</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-th-list logo-small"></span>
+				<h4>Table</h4>
+				<p class="kor">각종 사이트들의 문제가 다 모여있음</p>
+			</div>
+			<div class="col-sm-4">
+				<a href="./board/boardList.jsp">
+					<span class="glyphicon glyphicon-pencil logo-small"></span>
+					<h4>Board</h4>
+					<p class="kor">글을 쓸 수 있습니다</p>
+				</a>
+			</div>
+		</article>
+		<article class="row slideanim">
+			<div class="col-sm-4">
+				<a href="./extra/video.html">
+					<span class="glyphicon glyphicon-facetime-video logo-small"></span>
+					<h4>Video</h4>
+					<p class="kor">알고리즘에 도움이 되는 좋은 영상들</p>
+				<a href="./extra/musicPlayer.html">
+			</div>
+			<div class="col-sm-4">
+				<a href="./extra/musicPlayer.html">
+					<span class="glyphicon glyphicon-music logo-small"></span>
+					<h4>BGM</h4>
+					<p class="kor">브금틀고 코딩해욧!!</p>
+				</a>
+			</div>
+			<div class="col-sm-4">
+				<a href="./extra/clock.html">
+					<span class="glyphicon glyphicon-time logo-small"></span>
+					<h4>Clock</h4>
+					<p class="kor">친구들과 치킨런을 해보아요!</p>
+				</a>
+			</div>
+		</article>
+	</section>
+	<section class="container-fluid bg-grey" id="maps">
+		<h2>찾아오는 길</h2>
+		<div id="googleMap" style="height:400px;width:100%;"></div>>
+	</section>
+	<footer class="container-fluid text-center">
+		<a href="#" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</a>
+		<h3>By me</h3>
+	</footer>
+</body>
+</html>

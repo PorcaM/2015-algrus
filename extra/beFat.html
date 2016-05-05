@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<Title>No eat, no fat</Title>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../mainStyle.css">
+	<style>
+		div p 		{transition: 2s;}
+		div p:hover {transform: scale(2, 2)}
+		@keyframes bbb{
+			0% 	{left:0px; top:0px;}
+			25% {left:200px; top:0px;}
+			50% {left:200px; top:200px;}
+			75% {left:0px; top:200px;}
+			100%{left:0px; top:0px;}
+		}
+		h3 	{
+			position: relative;
+			animation-name: bbb;
+			animation-duration: 4s;
+			animation-iteration-count: infinite;
+		}
+		aside 	{
+			background-color: white;
+			position: absolute;
+			right: 0;
+			top: 600px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var canvas, context;
+		var diet;
+		var hitCount = 0;
+		window.onload = function(){
+			canvas = document.getElementById("myCanvas");
+			context = canvas.getContext("2d");
+			diet = 1.0;
+			draw();
+			$("#logHistory").html(localStorage.log);
+		}
+		function clear(){
+			console.log("clear!!");
+			localStorage.removeItem(log);
+		}
+		function hit(){
+			if (sessionStorage.combo) {
+				sessionStorage.combo = Number(sessionStorage.combo) + 1;
+			} else {
+				sessionStorage.combo = 1;
+			}
+			hitCount += 1;
+			$("#hitHistory").html(sessionStorage.combo+"콤보!!!");
+			diet += 0.003;
+			$("#title").html("굶으면 빠져욧!!");
+			draw();
+		}
+		function beFat(){
+			diet -= 0.001;
+			$("#title").html("먹으면 살쪄욧!!");
+			draw();
+		}
+		function draw(){
+			var img = new Image();
+			img.onload = function(){
+				context.drawImage(img,0-1080*(diet-1),0-720*(diet-1),1080*diet,720*diet,0,0,750,500);
+			}
+			img.src = "../resources/beFat1.jpg";
+		}
+		function scale(){
+			$("#parameter").html("현재 몸무게: "+parseInt(370+300*(-diet))+"kg");
+			if(diet > 1.05){
+				end("win");
+			}
+			else if(diet < 0.8){
+				end("lose");
+			}
+		}
+		function end(state){
+			var prompt = "", log="";
+			log = hitCount+"회 때려서 ";
+			if(state=="win"){
+				prompt = "만세! 다이어트 성공!";
+				log = log+"성공";
+			}
+			else{
+				prompt = "결국 4급이 되었다.";
+				log = log+"실패";
+			}
+			log = log + "<br>";
+			console.log(log);
+			if(localStorage.log){
+				localStorage.log = log + localStorage.log;
+			}
+			else{
+				localStorage.log = log;
+			}
+			alert(prompt);
+			location.reload();
+		}
+		setInterval(function(){beFat(); scale();}, 100);
+	</script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html">Algrus</a>
+			</div>
+		</div>
+	</nav>
+	<header class="jumbotron text-center">
+		<h2 id="title">굶으면 빠져욧!!!</h2>
+	</header>
+	<section class="container-fluid text-center rainbow">
+		<aritcle class="row">
+			<div class="container-canvas">
+				<h3>Please Help my diet!!</h3>
+				<p>돼민이가 살을 뺄 수 있게 때려서 도와주세요!!</p>
+				<p id="parameter"></p>
+				<input type="button" value="로그 지워요!" onclick="clear()">
+				<canvas id="myCanvas" width="600" height="400" onclick="hit()"></canvas>
+			</div>
+		</aritcle>
+	</section>
+	<aside align="right">
+		<p id="hitHistory"></p>
+		<p id="logHistory"></p>
+	</aside>
+</body>
+</html>
